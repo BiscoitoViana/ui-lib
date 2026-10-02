@@ -44,13 +44,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "11.15.1",
-      "onFail": "download"
-    }
-  },
+  "packageManager": "pnpm@11.15.1",
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^26.6.3",
