@@ -40,7 +40,9 @@
     "build": "vite build",
     "typecheck": "tsc -b",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "peerDependencies": {
     "react": "^19.0.0",
@@ -49,6 +51,7 @@
   "packageManager": "pnpm@11.15.1",
   "devDependencies": {
     "@storybook/addon-docs": "^10.6.1",
+    "@storybook/addon-vitest": "^10.6.1",
     "@storybook/react-vite": "^10.6.1",
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^26.6.3",
@@ -62,7 +65,11 @@
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
     "vite": "^8.3.1",
-    "vite-plugin-dts": "^5.1.1"
+    "vite-plugin-dts": "^5.1.1",
+    "vitest": "^5.0.3",
+    "@vitest/browser-playwright": "^5.0.3",
+    "@vitest/coverage-v8": "^5.0.3",
+    "playwright": "^1.63.0"
   },
   "dependencies": {
     "clsx": "^2.1.1",
