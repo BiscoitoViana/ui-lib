@@ -15,7 +15,9 @@ describe("cn", () => {
   });
 
   it("resolves conflicts between theme token colors", () => {
-    expect(cn("text-primary", "text-muted-foreground")).toBe("text-muted-foreground");
+    expect(cn("text-primary", "text-muted-foreground")).toBe(
+      "text-muted-foreground",
+    );
   });
 
   it("keeps classes that only share a prefix", () => {

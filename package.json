@@ -43,7 +43,9 @@
     "build-storybook": "storybook build",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write ."
   },
   "peerDependencies": {
     "react": "^19.0.0",
@@ -51,6 +53,7 @@
   },
   "packageManager": "pnpm@11.15.1",
   "devDependencies": {
+    "@biomejs/biome": "2.5.15",
     "@storybook/addon-docs": "^10.6.1",
     "@storybook/addon-vitest": "^10.6.1",
     "@storybook/react-vite": "^10.6.1",
