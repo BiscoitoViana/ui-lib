@@ -1,11 +1,11 @@
 /// <reference types="vitest/config" />
 import { fileURLToPath } from "node:url";
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import tailwindcss from "@tailwindcss/vite";
-import dts from "vite-plugin-dts";
 import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
 import { playwright } from "@vitest/browser-playwright";
+import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
 import pkg from "./package.json" with { type: "json" };
 
 const runtimeDependencies = Object.keys(pkg.dependencies ?? {});
@@ -66,7 +66,12 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       include: ["src/**/*.{ts,tsx}"],
-      exclude: ["src/**/*.stories.tsx", "src/**/*.test.{ts,tsx}", "src/**/*.d.ts", "src/index.ts"],
+      exclude: [
+        "src/**/*.stories.tsx",
+        "src/**/*.test.{ts,tsx}",
+        "src/**/*.d.ts",
+        "src/index.ts",
+      ],
     },
     projects: [
       {

@@ -10,7 +10,10 @@ const config: StorybookConfig = {
   async viteFinal(viteConfig) {
     viteConfig.plugins = viteConfig.plugins
       ?.flat()
-      .filter((plugin) => !(plugin && "name" in plugin && plugin.name.includes("dts")));
+      .filter(
+        (plugin) =>
+          !(plugin && "name" in plugin && plugin.name.includes("dts")),
+      );
     return viteConfig;
   },
 };
