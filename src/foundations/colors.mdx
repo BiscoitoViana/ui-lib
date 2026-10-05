@@ -1,0 +1,117 @@
+import { ColorItem, ColorPalette, Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Foundations/Colors" />
+
+export const steps = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+
+export const scale = (name) =>
+  Object.fromEntries(steps.map((step) => [step, `var(--color-${name}-${step})`]));
+
+export const tokens = (...names) =>
+  Object.fromEntries(names.map((name) => [name, `var(--${name})`]));
+
+# Colors
+
+The color system has two layers.
+
+**The palette** defines the raw colors: seven scales from `50` to `950`, available as
+`--color-{scale}-{step}` variables and utilities such as `bg-primary-700`. Palette steps
+don't change between themes.
+
+**Semantic tokens** describe what a color is for, such as `background`, `border` or
+`primary-hover`. Each one points to a palette step, and that step can differ between the
+light and dark themes.
+
+Components only use semantic tokens. This keeps every theme decision in a single place:
+switching themes changes which palette steps the tokens point to, and every component
+follows automatically.
+
+## Palette
+
+<ColorPalette>
+  <ColorItem title="Primary" subtitle="--color-primary-*" colors={scale("primary")} />
+  <ColorItem title="Secondary" subtitle="--color-secondary-*" colors={scale("secondary")} />
+  <ColorItem title="Neutral" subtitle="--color-neutral-*" colors={scale("neutral")} />
+  <ColorItem title="Success" subtitle="--color-success-*" colors={scale("success")} />
+  <ColorItem title="Warning" subtitle="--color-warning-*" colors={scale("warning")} />
+  <ColorItem title="Error" subtitle="--color-error-*" colors={scale("error")} />
+  <ColorItem title="Info" subtitle="--color-info-*" colors={scale("info")} />
+</ColorPalette>
+
+## Semantic tokens
+
+Values shown below reflect the light theme.
+
+<ColorPalette>
+  <ColorItem
+    title="Surfaces"
+    subtitle="Page and container backgrounds"
+    colors={tokens("background", "surface", "muted")}
+  />
+  <ColorItem
+    title="Text"
+    subtitle="Foreground colors"
+    colors={tokens("foreground", "surface-foreground", "muted-foreground")}
+  />
+  <ColorItem
+    title="Lines"
+    subtitle="Borders, inputs and focus rings"
+    colors={tokens("border", "input", "ring")}
+  />
+  <ColorItem
+    title="Primary"
+    subtitle="Main actions"
+    colors={tokens(
+      "primary",
+      "primary-hover",
+      "primary-active",
+      "primary-foreground",
+      "primary-disabled",
+      "primary-disabled-foreground",
+    )}
+  />
+  <ColorItem
+    title="Secondary"
+    subtitle="Supporting actions"
+    colors={tokens(
+      "secondary",
+      "secondary-hover",
+      "secondary-active",
+      "secondary-foreground",
+      "secondary-disabled",
+      "secondary-disabled-foreground",
+    )}
+  />
+  <ColorItem
+    title="Error"
+    subtitle="Destructive actions and error states"
+    colors={tokens(
+      "error",
+      "error-hover",
+      "error-active",
+      "error-foreground",
+      "error-disabled",
+      "error-disabled-foreground",
+    )}
+  />
+</ColorPalette>
+
+## Dark mode
+
+Add the `dark` class to the `<html>` element to switch every component to the dark theme.
+
+## Customizing
+
+Tokens live in a CSS cascade layer, so any plain CSS in your app overrides them,
+regardless of import order. Replace palette steps to rebrand, or remap a single token to
+change one role:
+
+```css
+:root {
+  /* Rebrand: replace steps of a palette scale */
+  --color-primary-700: oklch(50% 0.2 280);
+
+  /* Or remap one role to a different step */
+  --primary: var(--color-primary-600);
+}
+```

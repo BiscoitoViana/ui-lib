@@ -1,0 +1,8 @@
+/*
+ * Storybook-only styles. The library intentionally doesn't style <body>,
+ * so the preview applies the theme's page colors, as a consuming app would.
+ */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
