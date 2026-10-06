@@ -6,6 +6,7 @@ const config: StorybookConfig = {
     "@storybook/addon-docs",
     "@storybook/addon-vitest",
     "@storybook/addon-themes",
+    "@storybook/addon-a11y",
   ],
   framework: "@storybook/react-vite",
   // Storybook reuses vite.config.ts, which is set up to build the library.
