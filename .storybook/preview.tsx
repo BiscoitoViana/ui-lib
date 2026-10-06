@@ -13,6 +13,10 @@ const preview: Preview = {
     }),
   ],
   parameters: {
+    a11y: {
+      // Fails story tests on accessibility violations, so CI blocks them.
+      test: "error",
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
