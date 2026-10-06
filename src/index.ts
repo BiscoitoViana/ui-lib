@@ -1,4 +1,8 @@
 import "./styles.css";
 
-export { Hello } from "./components/hello";
+export {
+  Button,
+  type ButtonProps,
+  buttonVariants,
+} from "./components/button/button";
 export { cn } from "./lib/utils";

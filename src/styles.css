@@ -6,7 +6,16 @@
 @layer theme, base, components, utilities;
 
 @import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/utilities.css" layer(utilities);
+/*
+ * Automatic source detection is disabled: only library code may generate
+ * utilities. Classes used only in stories, tests or docs must never end up
+ * in the published stylesheet.
+ */
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@source "./components";
+@source "./lib";
+@source not "./**/*.stories.tsx";
+@source not "./**/*.test.{ts,tsx}";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -112,14 +121,37 @@
 }
 
 /*
+ * Typography. The font is declared but not loaded: the consuming app loads it,
+ * so it can optimize delivery and avoid downloading the same font twice.
+ * "Inter Variable" matches @fontsource-variable/inter; "Inter" matches static builds.
+ */
+@theme static {
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Label styles, used by interactive components such as buttons. */
+  --text-label-sm: 0.75rem;
+  --text-label-sm--line-height: 1rem;
+  --text-label-sm--font-weight: 500;
+  --text-label-sm--letter-spacing: 0em;
+
+  --text-label-md: 0.875rem;
+  --text-label-md--line-height: 1.25rem;
+  --text-label-md--font-weight: 500;
+  --text-label-md--letter-spacing: 0em;
+
+  --text-label-lg: 1rem;
+  --text-label-lg--line-height: 1.5rem;
+  --text-label-lg--font-weight: 500;
+  --text-label-lg--letter-spacing: 0em;
+}
+
+/*
  * Semantic tokens: what each color is for, mapped to palette steps per theme.
  * Defined inside a cascade layer so consumers can override any token with
  * plain, unlayered CSS, regardless of stylesheet order.
  */
 @layer base {
   :root {
-    --radius: 0.625rem;
-
     /* Surfaces and text */
     --background: var(--color-white);
     --foreground: var(--color-neutral-950);
@@ -131,12 +163,16 @@
     --input: var(--color-neutral-300);
     --ring: var(--color-primary-500);
 
+    /* Subtle interactive states (outline and ghost buttons, menu items, rows) */
+    --subtle-hover: var(--color-neutral-100);
+    --subtle-active: var(--color-neutral-200);
+
     /* Primary */
     --primary: var(--color-primary-700);
     --primary-hover: var(--color-primary-800);
     --primary-active: var(--color-primary-900);
     --primary-foreground: var(--color-white);
-    --primary-disabled: var(--color-primary-200);
+    --primary-disabled: var(--color-primary-100);
     --primary-disabled-foreground: var(--color-primary-600);
 
     /* Secondary */
@@ -168,6 +204,9 @@
     --input: var(--color-neutral-700);
     --ring: var(--color-primary-400);
 
+    --subtle-hover: var(--color-neutral-800);
+    --subtle-active: var(--color-neutral-700);
+
     --primary-disabled: var(--color-primary-900);
     --primary-disabled-foreground: var(--color-primary-500);
 
@@ -195,6 +234,9 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
+  --color-subtle-hover: var(--subtle-hover);
+  --color-subtle-active: var(--subtle-active);
+
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-active: var(--primary-active);
@@ -215,9 +257,4 @@
   --color-error-foreground: var(--error-foreground);
   --color-error-disabled: var(--error-disabled);
   --color-error-disabled-foreground: var(--error-disabled-foreground);
-
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
 }

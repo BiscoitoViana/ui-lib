@@ -1,6 +1,15 @@
 /*
- * Storybook-only styles. The library intentionally doesn't style <body>,
- * so the preview applies the theme's page colors, as a consuming app would.
+ * Storybook-only entry point. Imports the library theme and adds stories as
+ * a source, so layout classes used only in stories work in Storybook without
+ * leaking into the published stylesheet.
+ */
+@import "../src/styles.css";
+@source "../src/**/*.stories.tsx";
+@source "../src/**/*.mdx";
+
+/*
+ * The library intentionally doesn't style <body>, so the preview applies the
+ * theme's page colors, as a consuming app would.
  */
 body {
   background-color: var(--background);
