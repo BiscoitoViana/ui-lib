@@ -23,4 +23,14 @@ describe("cn", () => {
   it("keeps classes that only share a prefix", () => {
     expect(cn("text-lg", "text-primary")).toBe("text-lg text-primary");
   });
+
+  it("keeps theme font sizes alongside text colors", () => {
+    expect(cn("text-primary-foreground", "text-label-md")).toBe(
+      "text-primary-foreground text-label-md",
+    );
+  });
+
+  it("resolves conflicts between theme font sizes", () => {
+    expect(cn("text-label-sm", "text-label-lg")).toBe("text-label-lg");
+  });
 });

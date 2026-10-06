@@ -1,7 +1,7 @@
 import { withThemeByClassName } from "@storybook/addon-themes";
 import type { Preview } from "@storybook/react-vite";
-import "../src/styles.css";
 import "./preview.css";
+import "@fontsource-variable/inter";
 
 const preview: Preview = {
   tags: ["autodocs"],
