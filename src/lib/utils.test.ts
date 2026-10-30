@@ -33,4 +33,10 @@ describe("cn", () => {
   it("resolves conflicts between theme font sizes", () => {
     expect(cn("text-label-sm", "text-label-lg")).toBe("text-label-lg");
   });
+
+  it("keeps body font sizes alongside text colors", () => {
+    expect(cn("text-foreground", "text-body-md")).toBe(
+      "text-foreground text-body-md",
+    );
+  });
 });

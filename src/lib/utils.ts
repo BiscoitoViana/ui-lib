@@ -11,7 +11,7 @@ import { extendTailwindMerge } from "tailwind-merge";
 const twMerge = extendTailwindMerge({
   extend: {
     theme: {
-      text: ["label-sm", "label-md", "label-lg"],
+      text: ["label-sm", "label-md", "label-lg", "body-md", "body-lg"],
     },
   },
 });
