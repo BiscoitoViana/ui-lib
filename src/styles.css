@@ -201,6 +201,9 @@
     --error-foreground: var(--color-white);
     --error-disabled: var(--color-error-200);
     --error-disabled-foreground: var(--color-error-600);
+
+    /* Error text on regular backgrounds (messages, required indicators) */
+    --error-text: var(--color-error-700);
   }
 
   /* Only tokens that differ from the light theme are redefined. */
@@ -230,6 +233,8 @@
 
     --error-disabled: var(--color-error-900);
     --error-disabled-foreground: var(--color-error-500);
+
+    --error-text: var(--color-error-400);
   }
 }
 
@@ -268,4 +273,5 @@
   --color-error-foreground: var(--error-foreground);
   --color-error-disabled: var(--error-disabled);
   --color-error-disabled-foreground: var(--error-disabled-foreground);
+  --color-error-text: var(--error-text);
 }
